@@ -1,9 +1,3 @@
-没问题，我已经将第一部分（数据下载）的文案修改为“联系通讯作者获取”，这种表述在学术界非常标准（通常称为 "available upon reasonable request"）。
-
-以下是更新后的完整 `README.md` 模板：
-
----
-
 # Osteoporosis-FedVFM
 
 In this study, we used the DINOv2 series vision foundation model combined with Federated Learning on an Ubuntu system for experiments. Below is a simple demo guide:
