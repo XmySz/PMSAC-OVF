@@ -1,16 +1,77 @@
-# PMSAC-OVF: Radiomics Module
+没问题，我已经将第一部分（数据下载）的文案修改为“联系通讯作者获取”，这种表述在学术界非常标准（通常称为 "available upon reasonable request"）。
 
-This repository contains the source code for the **Radiomics analysis module** of the paper: **"PMSAC-OVF: a fully automated multi-institutional system for predicting osteoporotic vertebral fracture using paraspinal muscle signatures from lumbar MRI"**.
+以下是更新后的完整 `README.md` 模板：
 
-This module is designed to extract high-dimensional quantitative features from Paraspinal Muscles (PM) regions in lumbar MRI scans and construct machine learning models to predict the risk of Osteoporotic Vertebral Fracture (OVF).
+---
 
-## 📋 Features
+# Osteoporosis-FedVFM
 
-*   **Feature Extraction**: Extracts texture, shape, and first-order statistical features from MRI images (ROIs: Psoas Major, Erector Spinae-Multifidus complex) using `PyRadiomics`.
-*   **Preprocessing**: Includes voxel resampling, intensity normalization (Z-score), and discretization.
-*   **Feature Selection**: Implements a rigorous 3-step selection strategy:
-    1.  Mann-Whitney U test (univariate analysis)
-    2.  Pearson correlation analysis (removing redundant features)
-    3.  LASSO regression (feature sparsification and selection)
-*   **Modeling**: Constructs an ensemble model using XGBoost and calculates the final **Radiomics Signature (RS)**.
+In this study, we used the DINOv2 series vision foundation model combined with Federated Learning on an Ubuntu system for experiments. Below is a simple demo guide:
 
+1、Multi-center Data Download
+
+```
+The multi-center Osteoporosis dataset used in this study is available upon reasonable request. If you need to access or download the data, please contact the corresponding author via email.
+
+```
+
+2、Pre-trained Weights for the Vision Foundation Model
+
+```
+The compressed package includes a DINOv2 model parameter.
+More model weight files can be downloaded from the following website:
+[https://github.com/facebookresearch/dinov2](https://github.com/facebookresearch/dinov2)
+
+```
+
+3、Unzip the downloaded multi-center data and place it in the corresponding dataset folder.
+
+4、Install and Activate the Runtime Environment (Anaconda) and Install Dependencies:
+
+```
+wget [https://repo.anaconda.com/archive/Anaconda3-2023.03-Linux-x86_64.sh](https://repo.anaconda.com/archive/Anaconda3-2023.03-Linux-x86_64.sh)
+bash Anaconda3-2023.03-Linux-x86_64.sh
+source ~/.bashrc
+conda create --name fed_env python=3.9
+conda activate fed_env
+cd ./fed_llm
+pip install -r requirements.txt
+
+```
+
+5、Run demo:
+
+```
+# for feature extraction:
+python feature_extraction2.py
+
+# for federated learning model training (N-clients):
+python FL_LLM_Nclients_main.py
+
+```
+
+To facilitate your reading, we have added necessary code comments in the scripts. We have also preset the hyperparameters for model training, allowing you to run the demo directly. If you wish to set your own hyperparameters, you can do so according to the parameter descriptions.
+If you want to shorten the model training time, and if CPU and GPU resources allow, you can set a larger batch_size or adjust the num_workers quantity in the data dataloader scripts (such as `N_data_dataloaders.py`). Conversely, you can reduce the batch_size and num_works to free up more computing resources.
+
+6、Output:
+
+```
+Model files and extracted features will be saved in the corresponding output directories.
+
+```
+
+7、Model Evaluation and Radiomics Analysis:
+
+```
+# for XGBoost model evaluation:
+cd ../Radiomics
+python XGBoostEval.py
+
+# for Multiple Linear Regression (MLR) evaluation:
+python MLREval.py
+
+```
+
+The trained model parameters mentioned in the paper are saved in the project folder. If you wish to reproduce the results in the paper, you can use these scripts to load the model weights and data for validation. We conduct all statistical analyses and feature selection utilizing standard Python libraries to ensure maximum reproducibility and academic rigorousness across different computational environments.
+
+Thank you for your attention!
