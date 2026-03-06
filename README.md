@@ -1,4 +1,4 @@
-# Osteoporosis-FedVFM
+# PMSAC-OVF
 ![架构图](data/7a3b51f43e182bf3731978a4a26d6243.png)
 
 In this study, we used the DINOv2 series vision foundation model combined with Federated Learning on an Ubuntu system for experiments. Below is a simple demo guide:
